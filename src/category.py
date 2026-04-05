@@ -7,9 +7,9 @@ class Category:
     class to represent a category of products
 
     Attributes:
-    categories_number: int
+    category_count: int
         class attribute: number of categories
-    products_quantity: int
+    product_count: int
         class attribute: total number of products in all categories
 
     name: str
@@ -19,8 +19,8 @@ class Category:
     products: list[Product]
         list of products associated with this category
     """
-    categories_number: int = 0
-    products_quantity: int = 0
+    category_count: int = 0
+    product_count: int = 0
 
 
     def __init__(self, name: str, description: str, products: list[Product]) -> None:
@@ -33,5 +33,5 @@ class Category:
         self.name = name
         self.description = description
         self.products = products
-        Category.categories_number += 1
-        Category.products_quantity += len(products)
+        Category.category_count += 1
+        Category.product_count += len(products)
