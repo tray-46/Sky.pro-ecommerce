@@ -2,6 +2,12 @@
 
 from src.product import Product
 
+from src.utils.logger import get_logger
+
+
+module_logger = get_logger(__name__)
+
+
 class Category:
     """
     class to represent a category of products
@@ -30,8 +36,11 @@ class Category:
         :param description: str with description of a category
         :param products: list of Products class objects associated with this category
         """
+        module_logger.debug(f"Constructor of Category class called with: name='{name}', description='{description}', "
+                            f"products={", ".join([f"'{product.name}'" for product in products])}")
         self.name = name
         self.description = description
         self.products = products
         Category.category_count += 1
         Category.product_count += len(products)
+        module_logger.info(f"Instance of Category named '{self.name}' created")

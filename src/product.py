@@ -1,5 +1,9 @@
 """module with Product class definition"""
 
+from src.utils.logger import get_logger
+
+module_logger = get_logger(__name__)
+
 class Product:
     """
     class to represent a product
@@ -23,7 +27,10 @@ class Product:
         :param price: float with price of a product
         :param quantity: int with quantity of a product
         """
+        module_logger.debug(f"Constructor of Product class called with: name='{name}', description='{description}', "
+                            f"price={price}, quantity: {quantity}")
         self.name = name
         self.description = description
         self.price = price
         self.quantity = quantity
+        module_logger.info(f"Instance of Product named '{self.name}' created")
