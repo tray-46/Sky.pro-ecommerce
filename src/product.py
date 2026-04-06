@@ -28,8 +28,10 @@ class Product:
         :param price: float with price of a product
         :param quantity: int with quantity of a product
         """
-        module_logger.debug(f"Constructor of Product class called with: name='{name}', description='{description}', "
-                            f"price={price}, quantity: {quantity}")
+        module_logger.debug(
+            f"Constructor of Product class called with: name='{name}', description='{description}', "
+            f"price={price}, quantity: {quantity}"
+        )
         self.name = name
         self.description = description
         self.price = price

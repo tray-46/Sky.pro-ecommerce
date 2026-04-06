@@ -48,8 +48,10 @@ def create_products(products: list[dict]) -> list[Product]:
     result = list()
     for product in products:
         result.append(Product(**product))
-    module_logger.info(f"Function create_products completed successfully, "
-                       f"returning Product objects: [{", ".join([f"'{product.name}'" for product in result])}] ")
+    module_logger.info(
+        f"Function create_products completed successfully, "
+        f"returning Product objects: [{", ".join([f"'{product.name}'" for product in result])}] "
+    )
     return result
 
 
@@ -64,8 +66,10 @@ def create_categories(categories: list[dict]) -> list[Category]:
     for category in categories:
         category["products"] = create_products(category.get("products", []))
         result.append(Category(**category))
-    module_logger.info(f"Function create_categories completed successfully, "
-                       f"returning Category objects: [{", ".join([f"'{category.name}'" for category in result])}] ")
+    module_logger.info(
+        f"Function create_categories completed successfully, "
+        f"returning Category objects: [{", ".join([f"'{category.name}'" for category in result])}] "
+    )
     return result
 
 
@@ -79,6 +83,8 @@ def load_categories(file_path_str: str) -> list[Category]:
     module_logger.debug("Function load_categories called")
     categories_data = load_json(file_path_str)
     result = create_categories(categories_data)
-    module_logger.info(f"Function load_categories completed successfully, "
-                       f"returning Category objects: [{", ".join([f"'{category.name}'" for category in result])}] ")
+    module_logger.info(
+        f"Function load_categories completed successfully, "
+        f"returning Category objects: [{", ".join([f"'{category.name}'" for category in result])}] "
+    )
     return result

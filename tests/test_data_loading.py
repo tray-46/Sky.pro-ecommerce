@@ -59,8 +59,9 @@ def test_create_categories(categories_list: list[dict]) -> None:
 
 @patch("src.utils.data_loading.create_categories")
 @patch("src.utils.data_loading.load_json")
-def test_load_categories(mocked_load_json: Mock, mocked_create_categories: Mock,
-                         categories_list: list[dict], category: Category) -> None:
+def test_load_categories(
+    mocked_load_json: Mock, mocked_create_categories: Mock, categories_list: list[dict], category: Category
+) -> None:
     mocked_load_json.return_value = categories_list
     mocked_create_categories.return_value = [category]
     result = load_categories(JSON_FILE_PATH)

@@ -1,4 +1,5 @@
 """test_product.py with tests for Product class"""
+
 from src.product import Product
 
 

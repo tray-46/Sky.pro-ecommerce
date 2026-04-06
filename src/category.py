@@ -23,6 +23,7 @@ class Category:
     products: list[Product]
         list of products associated with this category
     """
+
     category_count: int = 0
     product_count: int = 0
 
@@ -33,8 +34,10 @@ class Category:
         :param description: str with description of a category
         :param products: list of Products class objects associated with this category
         """
-        module_logger.debug(f"Constructor of Category class called with: name='{name}', description='{description}', "
-                            f"products={", ".join([f"'{product.name}'" for product in products])}")
+        module_logger.debug(
+            f"Constructor of Category class called with: name='{name}', description='{description}', "
+            f"products={", ".join([f"'{product.name}'" for product in products])}"
+        )
         self.name = name
         self.description = description
         self.products = products
