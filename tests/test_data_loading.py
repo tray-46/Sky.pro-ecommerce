@@ -5,9 +5,10 @@ from unittest.mock import Mock, patch
 
 from src.category import Category
 from src.product import Product
-from src.utils.data_loading import load_json, create_products, create_categories, load_categories
+from src.utils.data_loading import create_categories, create_products, load_categories, load_json
 
 JSON_FILE_PATH = "data/products.json"
+
 
 def test_load_json_bad_file() -> None:
     assert load_json("non_existing_file.json") == []
@@ -55,9 +56,11 @@ def test_create_categories(categories_list: list[dict]) -> None:
     assert all(isinstance(category, Category) for category in result)
     assert all(isinstance(product, Product) for product in result[0].products)
 
+
 @patch("src.utils.data_loading.create_categories")
 @patch("src.utils.data_loading.load_json")
-def test_load_categories(mocked_load_json, mocked_create_categories, categories_list, category) -> None:
+def test_load_categories(mocked_load_json: Mock, mocked_create_categories: Mock,
+                         categories_list: list[dict], category: Category) -> None:
     mocked_load_json.return_value = categories_list
     mocked_create_categories.return_value = [category]
     result = load_categories(JSON_FILE_PATH)

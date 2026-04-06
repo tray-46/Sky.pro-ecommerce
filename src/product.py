@@ -4,6 +4,7 @@ from src.utils.logger import get_logger
 
 module_logger = get_logger(__name__)
 
+
 class Product:
     """
     class to represent a product

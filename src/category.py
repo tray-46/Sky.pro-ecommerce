@@ -1,9 +1,7 @@
 """module with Category class definition"""
 
 from src.product import Product
-
 from src.utils.logger import get_logger
-
 
 module_logger = get_logger(__name__)
 
@@ -27,7 +25,6 @@ class Category:
     """
     category_count: int = 0
     product_count: int = 0
-
 
     def __init__(self, name: str, description: str, products: list[Product]) -> None:
         """

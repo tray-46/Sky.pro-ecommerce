@@ -1,7 +1,7 @@
 import pytest
 
-from src.product import Product
 from src.category import Category
+from src.product import Product
 
 
 @pytest.fixture
@@ -18,7 +18,7 @@ def product() -> Product:
 
 
 @pytest.fixture
-def categories_list(products_list) -> list[dict]:
+def categories_list(products_list: list[dict]) -> list[dict]:
     return [
         {"name": "category_1", "description": "category_1 description", "products": products_list},
         {"name": "category_2", "description": "category_2 description", "products": products_list},
@@ -26,5 +26,5 @@ def categories_list(products_list) -> list[dict]:
 
 
 @pytest.fixture
-def category(product) -> Category:
+def category(product: Product) -> Category:
     return Category("test_category", "test_category description", [product])

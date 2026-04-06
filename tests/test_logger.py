@@ -1,3 +1,5 @@
+"""test_logger.py with tests for logger.py module functions"""
+
 import logging
 
 import pytest

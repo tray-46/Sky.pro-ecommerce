@@ -1,11 +1,11 @@
 """module with functions for data loading"""
 
 import json
-from src.utils.logger import get_logger
-from src.product import Product
-from src.category import Category
-from config import ROOT_DIR
 
+from config import ROOT_DIR
+from src.category import Category
+from src.product import Product
+from src.utils.logger import get_logger
 
 module_logger = get_logger(__name__)
 
@@ -44,7 +44,7 @@ def create_products(products: list[dict]) -> list[Product]:
     :param products: list of dicts with product data
     :return: list of Product objects
     """
-    module_logger.debug(f"Function create_products called")
+    module_logger.debug("Function create_products called")
     result = list()
     for product in products:
         result.append(Product(**product))
@@ -59,7 +59,7 @@ def create_categories(categories: list[dict]) -> list[Category]:
     :param categories: list of dicts with category data
     :return: list of Category objects
     """
-    module_logger.debug(f"Function create_categories called")
+    module_logger.debug("Function create_categories called")
     result = list()
     for category in categories:
         category["products"] = create_products(category.get("products", []))
@@ -76,10 +76,9 @@ def load_categories(file_path_str: str) -> list[Category]:
                           (path relative to root directory of the project)
     :return: list of Category objects
     """
-    module_logger.debug(f"Function load_categories called")
+    module_logger.debug("Function load_categories called")
     categories_data = load_json(file_path_str)
     result = create_categories(categories_data)
     module_logger.info(f"Function load_categories completed successfully, "
                        f"returning Category objects: [{", ".join([f"'{category.name}'" for category in result])}] ")
     return result
-
