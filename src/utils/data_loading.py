@@ -17,7 +17,7 @@ def load_json(file_path_str: str) -> list[dict]:
                           (path relative to root directory of the project)
     :return: list of dicts
     """
-    module_logger.debug(f"Function load_json called with: file_path_str={file_path_str}")
+    module_logger.debug(f"Function load_json called with: file_path_str='{file_path_str}'")
     file_path = ROOT_DIR / file_path_str
     if not file_path.is_file() or file_path.stat().st_size == 0:
         module_logger.info("Specified file was not found or is empty, returning empty list")
@@ -31,10 +31,10 @@ def load_json(file_path_str: str) -> list[dict]:
         module_logger.error(f"Function load_transactions_data failed due to exception: {e}, returning empty list")
         return []
     if not isinstance(data, list):
-        module_logger.info(f"Data read from {file_path_str} is not a list object, returning empty list")
+        module_logger.info(f"Data read from '{file_path_str}' is not a list object, returning empty list")
         return []
     else:
-        module_logger.info(f"Data read from {file_path_str} is successful")
+        module_logger.info(f"Data read from '{file_path_str}' is successful")
         return data
 
 
