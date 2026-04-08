@@ -1,5 +1,6 @@
 """test_product.py with tests for Product class"""
 import pytest
+
 from src.product import Product
 
 
@@ -30,7 +31,8 @@ def test_product_price_getter(product: Product) -> None:
     assert product.price == 321
 
 
-def test_product_price_setter(product: Product, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+def test_product_price_setter(product: Product, monkeypatch: pytest.MonkeyPatch,
+                              capsys: pytest.CaptureFixture[str]) -> None:
     inputs = iter(["n", "some_nonsense", "y"])
     monkeypatch.setattr("builtins.input", lambda _: next(inputs))
     product.price = 3210

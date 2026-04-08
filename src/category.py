@@ -54,12 +54,13 @@ class Category:
         Category.product_count += 1
 
     @property
-    def products(self) -> list[str]:
+    def products(self) -> str:
         """
         list of products associated with category in string format
         :return: list[str], list of formatted strings describing all products in category
         """
-        return [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products]
+        return "\n".join([f"{product.name}, {product.price} руб. "
+                          f"Остаток: {product.quantity} шт." for product in self.__products])
 
     @property
     def products_list(self) -> list[Product]:

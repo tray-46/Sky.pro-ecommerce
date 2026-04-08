@@ -20,12 +20,12 @@ def test_category_counters() -> None:
     assert Category.product_count == 1
 
 
-def test_category_products_list_getter(category: Category, product) -> None:
+def test_category_products_list_getter(category: Category, product: Product) -> None:
     assert category.products_list == [product]
 
 
 def test_category_products_getter(category: Category) -> None:
-    assert category.products == ['test_product, 321 руб. Остаток: 123 шт.']
+    assert category.products == 'test_product, 321 руб. Остаток: 123 шт.'
 
 
 def test_category_add_product(category: Category, product: Product) -> None:

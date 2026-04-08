@@ -64,7 +64,6 @@ class Product:
         else:
             return Product(**new_product_params)
 
-
     @property
     def price(self) -> float:
         """
@@ -74,7 +73,6 @@ class Product:
         :rtype: float
         """
         return self.__price
-
 
     @price.setter
     def price(self, new_price: float) -> None:
