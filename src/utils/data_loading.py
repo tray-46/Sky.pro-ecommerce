@@ -45,9 +45,7 @@ def create_products(products: list[dict]) -> list[Product]:
     :return: list of Product objects
     """
     module_logger.debug("Function create_products called")
-    result = list()
-    for product in products:
-        result.append(Product(**product))
+    result = [Product(**product) for product in products]
     module_logger.info(
         f"Function create_products completed successfully, "
         f"returning Product objects: [{", ".join([f"'{product.name}'" for product in result])}] "

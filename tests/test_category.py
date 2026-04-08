@@ -12,7 +12,7 @@ def test_category_counters_zero() -> None:
 def test_category_init(category: Category, product: Product) -> None:
     assert category.name == "test_category"
     assert category.description == "test_category description"
-    assert category.products == [product]
+    assert category.products_list == [product]
 
 
 def test_category_counters() -> None:

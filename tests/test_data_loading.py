@@ -54,7 +54,7 @@ def test_create_categories(categories_list: list[dict]) -> None:
     assert isinstance(result, list)
     assert len(result) == 2
     assert all(isinstance(category, Category) for category in result)
-    assert all(isinstance(product, Product) for product in result[0].products)
+    assert all(isinstance(product, Product) for product in result[0].products_list)
 
 
 @patch("src.utils.data_loading.create_categories")
@@ -68,4 +68,4 @@ def test_load_categories(
     assert isinstance(result, list)
     assert len(result) == 1
     assert all(isinstance(category, Category) for category in result)
-    assert all(isinstance(product, Product) for product in result[0].products)
+    assert all(isinstance(product, Product) for product in result[0].products_list)
