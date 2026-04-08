@@ -25,7 +25,7 @@ def test_category_products_list_getter(category: Category, product: Product) -> 
 
 
 def test_category_products_getter(category: Category) -> None:
-    assert category.products == 'test_product, 321 руб. Остаток: 123 шт.'
+    assert category.products == "test_product, 321 руб. Остаток: 123 шт."
 
 
 def test_category_add_product(category: Category, product: Product) -> None:

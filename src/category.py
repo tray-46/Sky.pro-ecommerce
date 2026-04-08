@@ -59,8 +59,12 @@ class Category:
         list of products associated with category in string format
         :return: list[str], list of formatted strings describing all products in category
         """
-        return "\n".join([f"{product.name}, {product.price} руб. "
-                          f"Остаток: {product.quantity} шт." for product in self.__products])
+        return "\n".join(
+            [
+                f"{product.name}, {product.price} руб. " f"Остаток: {product.quantity} шт."
+                for product in self.__products
+            ]
+        )
 
     @property
     def products_list(self) -> list[Product]:
