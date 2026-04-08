@@ -34,7 +34,7 @@ if __name__ == "__main__":
     print(new_product.quantity)
 
     another_new_product = Product.new_product(
-        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 200000.0,
          "quantity": 5}, category1.products_list)
     print(another_new_product.name)
     print(another_new_product.description)
@@ -48,4 +48,5 @@ if __name__ == "__main__":
     print(new_product.price)
     new_product.price = 0
     print(new_product.price)
+    print(category1.products)
     module_logger.info("Application finished")

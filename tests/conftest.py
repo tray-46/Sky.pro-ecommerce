@@ -3,6 +3,10 @@ import pytest
 from src.category import Category
 from src.product import Product
 
+@pytest.fixture
+def product_dict() -> dict:
+    return {"name": "test_product", "description": "test_product description", "price": 3210, "quantity": 123}
+
 
 @pytest.fixture
 def products_list() -> list[dict]:
