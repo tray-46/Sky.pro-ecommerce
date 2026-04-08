@@ -16,7 +16,7 @@ class Product:
         name of a product
     description: str
         description of a product
-    price: float
+    __price: float
         price of a product
     quantity: int
         quantity of a product
@@ -24,7 +24,7 @@ class Product:
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """
-        Person class constructor
+        Product class constructor
         :param name: str with name of a product
         :param description: str with description of a product
         :param price: float with price of a product
@@ -42,6 +42,16 @@ class Product:
 
     @classmethod
     def new_product(cls, new_product_params: dict, products_list: Optional[list[Product]] = None) -> Product:
+        """
+        Product class constructor
+        :param new_product_params: dict with product parameters
+        :param products_list: list[Product] (optional parameter), existing list of products,
+                              if list contain product with new product name update existing product values
+        :return: Product instance with given parameters
+        """
+
+        # add new product to list? change product in list if updating?
+
         if products_list is None:
             products_list = []
         new_product_name = new_product_params.get("name", "NO_NAME")
@@ -57,6 +67,12 @@ class Product:
 
     @property
     def price(self) -> float:
+        """
+        get or set price of product
+        setting this will validate new price value
+        if new price lower than previous ask confirmation
+        :rtype: float
+        """
         return self.__price
 
 
@@ -66,8 +82,10 @@ class Product:
             if new_price < self.__price:
                 user_input = None
                 while user_input not in ["y", "n"]:
-                    user_input = input(f"Do you really want to lower the price for '{self.name}'? y/n")
+                    user_input = input(f"Do you really want to lower the price for '{self.name}'? y/n\n")
                 if user_input == "y":
                     self.__price = new_price
+            else:
+                self.__price = new_price
         else:
             print("Product price must be a positive number")
