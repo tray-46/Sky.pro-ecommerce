@@ -25,7 +25,7 @@ To run the application, execute main.py module.
 ## Usage
 Project has definition of two classes:  
 Product - class for representation of a product;
-Category - class for representation of a products category.
+Category - class for representation a category of products.
 
 The following functions are implemented in the project:
 1. function for creating and setting up logger:  

@@ -20,7 +20,7 @@ class Category:
         name of a category
     description: str
         description of a category
-    products: list[Product]
+    __products: list[Product]
         list of products associated with this category
     """
 
@@ -40,7 +40,36 @@ class Category:
         )
         self.name = name
         self.description = description
-        self.products = products
+        self.__products = products
         Category.category_count += 1
         Category.product_count += len(products)
         module_logger.info(f"Instance of Category named '{self.name}' created")
+
+    def add_product(self, new_product: Product) -> None:
+        """
+        adds new product to category
+        :param new_product: Product class object
+        """
+        self.__products.append(new_product)
+        Category.product_count += 1
+
+    @property
+    def products(self) -> str:
+        """
+        list of products associated with category in string format
+        :return: list[str], list of formatted strings describing all products in category
+        """
+        return "\n".join(
+            [
+                f"{product.name}, {product.price} руб. " f"Остаток: {product.quantity} шт."
+                for product in self.__products
+            ]
+        )
+
+    @property
+    def products_list(self) -> list[Product]:
+        """
+        list of products associated with category
+        :return:  list[Product], list of Product objects associated with category
+        """
+        return self.__products
