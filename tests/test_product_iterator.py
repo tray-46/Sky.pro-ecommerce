@@ -1,3 +1,5 @@
+"""test_product_iterator.py with tests for ProductIterator class"""
+
 from collections.abc import Iterable
 
 import pytest
