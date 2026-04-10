@@ -32,3 +32,7 @@ def test_category_add_product(category: Category, product: Product) -> None:
     assert len(category.products_list) == 1
     category.add_product(product)
     assert len(category.products_list) == 2
+
+
+def test_category_str(category: Category) -> None:
+    assert str(category) == "test_category, количество продуктов: 123"
