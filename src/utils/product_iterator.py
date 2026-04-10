@@ -1,4 +1,5 @@
 """module with ProductIterator class definition"""
+
 from src.category import Category
 from src.product import Product
 from src.utils.logger import get_logger
@@ -17,6 +18,7 @@ class ProductIterator:
         current index of product
 
     """
+
     __logger = get_logger(f"{__name__}.{__qualname__}")
 
     def __init__(self, product_category: Category) -> None:

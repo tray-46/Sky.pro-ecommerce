@@ -22,6 +22,7 @@ class Category:
     __products: list[Product]
         list of products associated with this category
     """
+
     __logger = get_logger(f"{__name__}.{__qualname__}")
 
     category_count: int = 0
