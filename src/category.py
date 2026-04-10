@@ -45,6 +45,9 @@ class Category:
         Category.product_count += len(products)
         module_logger.info(f"Instance of Category named '{self.name}' created")
 
+    def __str__(self) -> str:
+        return f"{self.name}, количество продуктов: {sum(product.quantity for product in self.__products)}"
+
     def add_product(self, new_product: Product) -> None:
         """
         adds new product to category
@@ -59,12 +62,7 @@ class Category:
         list of products associated with category in string format
         :return: list[str], list of formatted strings describing all products in category
         """
-        return "\n".join(
-            [
-                f"{product.name}, {product.price} руб. " f"Остаток: {product.quantity} шт."
-                for product in self.__products
-            ]
-        )
+        return "\n".join(str(product) for product in self.__products)
 
     @property
     def products_list(self) -> list[Product]:

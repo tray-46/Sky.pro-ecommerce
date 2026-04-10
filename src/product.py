@@ -40,6 +40,12 @@ class Product:
         self.quantity = quantity
         module_logger.info(f"Instance of Product named '{self.name}' created")
 
+    def __str__(self) -> str:
+        return f"{self.name}, {self.price} руб. " f"Остаток: {self.quantity} шт."
+
+    def __add__(self, other: Product) -> float:
+        return self.__price * self.quantity + other.__price * self.quantity
+
     @classmethod
     def new_product(cls, new_product_params: dict, products_list: Optional[list[Product]] = None) -> Product:
         """
