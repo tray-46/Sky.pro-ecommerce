@@ -4,6 +4,7 @@ from collections.abc import Iterable
 
 import pytest
 
+from src.product import Product
 from src.utils.product_iterator import ProductIterator
 
 
@@ -25,7 +26,7 @@ def test_product_iterator_index_getter(product_iterator: ProductIterator) -> Non
     assert product_iterator.index == 1
 
 
-def test_product_iterator(product_iterator, product) -> None:
+def test_product_iterator(product_iterator: ProductIterator, product: Product) -> None:
     assert next(product_iterator) == product
     with pytest.raises(StopIteration):
         next(product_iterator)

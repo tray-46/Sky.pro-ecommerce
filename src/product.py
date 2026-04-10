@@ -63,7 +63,8 @@ class Product:
                               if list contain product with new product name update existing product values
         :return: Product instance with given parameters
         """
-        cls.__logger.debug(f"{cls.__name__} new_product called with new_product_params: {new_product_params} and products_list: {products_list}")
+        cls.__logger.debug(f"{cls.__name__} new_product called with new_product_params: {new_product_params} "
+                           f"and products_list: {products_list}")
         # add new product to list? change product in list if updating?
 
         if products_list is None:
@@ -94,7 +95,8 @@ class Product:
 
     @price.setter
     def price(self, new_price: float) -> None:
-        Product.__logger.debug(f"Trying to set '{self.name}' price - old value: {self.__price}, new value: {new_price}")
+        Product.__logger.debug(f"Trying to set '{self.name}' price "
+                               f"- old value: {self.__price}, new value: {new_price}")
         if new_price > 0:
             if new_price < self.__price:
                 user_input = None
