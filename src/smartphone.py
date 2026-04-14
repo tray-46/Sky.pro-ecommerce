@@ -42,8 +42,14 @@ class Smartphone(Product):
         :param memory: int with memory capacity of a smartphone in GB
         :param color: str with name of smartphone color
         """
+        self._logger.debug(
+            f"Constructor of Smartphone class called with: name='{name}', description='{description}', "
+            f"price={price}, quantity: {quantity}, efficiency: {efficiency}, model: {model}, "
+            f"memory: {memory}, color: {color}"
+        )
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
         self.model = model
         self.memory = memory
         self.color = color
+        self._logger.info(f"Instance of Smartphone named '{self.name}' created")

@@ -8,7 +8,7 @@ from src.utils.logger import get_logger
 class Product:
     """
     class to represent a product
-    __logger: logging.Logger
+    _logger: logging.Logger
 
     Attributes:
     name: str
@@ -21,7 +21,7 @@ class Product:
         quantity of a product
     """
 
-    __logger = get_logger(f"{__name__}.{__qualname__}")
+    _logger = get_logger(f"{__name__}.{__qualname__}")
 
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """
@@ -31,7 +31,7 @@ class Product:
         :param price: float with price of a product
         :param quantity: int with quantity of a product
         """
-        Product.__logger.debug(
+        self._logger.debug(
             f"Constructor of Product class called with: name='{name}', description='{description}', "
             f"price={price}, quantity: {quantity}"
         )
@@ -39,7 +39,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
-        Product.__logger.info(f"Instance of Product named '{self.name}' created")
+        self._logger.info(f"Instance of Product named '{self.name}' created")
 
     def __str__(self) -> str:
         """return a human-readable string representation of the product"""
@@ -51,10 +51,12 @@ class Product:
         :param other: Product, the other product to add
         :return: float, returns total price of both products (price1*quantity1 + price2*quantity2)
         """
+        self._logger.debug(f"'{self.name}' add '{other}'")
         if not type(other) is type(self):
+            self._logger.error(f"Can't add {type(self)} and {type(other)}")
             raise TypeError(f"Can't add {type(self)} and {type(other)}")
         result = self.__price * self.quantity + other.__price * self.quantity
-        Product.__logger.debug(f"'{self.name}' added '{other.name}' with result: {result}")
+        self._logger.info(f"'{self.name}' added '{other.name}' with result: {result}")
         return result
 
     @classmethod
@@ -66,7 +68,7 @@ class Product:
                               if list contain product with new product name update existing product values
         :return: Product instance with given parameters
         """
-        cls.__logger.debug(
+        cls._logger.debug(
             f"{cls.__name__} new_product called with new_product_params: {new_product_params} "
             f"and products_list: {products_list}"
         )
@@ -80,11 +82,11 @@ class Product:
             new_product_name_price = new_product_params.get("price", 0)
             product.price = new_product_name_price if new_product_name_price > product.price else product.price
             product.quantity += new_product_params.get("quantity", 0)
-            cls.__logger.info(f"new_product call update '{product.name}'")
+            cls._logger.info(f"new_product call update '{product.name}'")
             return product
         else:
             product = Product(**new_product_params)
-            cls.__logger.info(f"new_product call create '{product.name}'")
+            cls._logger.info(f"new_product call create '{product.name}'")
             return product
 
     @property
@@ -95,12 +97,12 @@ class Product:
         if new price lower than previous ask confirmation
         :rtype: float
         """
-        Product.__logger.debug(f"Assessing '{self.name}' price")
+        self._logger.debug(f"Assessing '{self.name}' price")
         return self.__price
 
     @price.setter
     def price(self, new_price: float) -> None:
-        Product.__logger.debug(
+        self._logger.debug(
             f"Trying to set '{self.name}' price - old value: {self.__price}, new value: {new_price}"
         )
         if new_price > 0:
@@ -109,12 +111,12 @@ class Product:
                 while user_input not in ["y", "n"]:
                     user_input = input(f"Do you really want to lower the price for '{self.name}'? y/n\n")
                 if user_input == "y":
-                    Product.__logger.info(f"'{self.name}' price decreasing confirmed by user")
+                    self._logger.info(f"'{self.name}' price decreasing confirmed by user")
                     self.__price = new_price
-                    Product.__logger.info(f"'{self.name}' price changed to {self.__price}")
+                    self._logger.info(f"'{self.name}' price changed to {self.__price}")
             else:
                 self.__price = new_price
-                Product.__logger.info(f"'{self.name}' price changed to {self.__price}")
+                self._logger.info(f"'{self.name}' price changed to {self.__price}")
         else:
-            Product.__logger.error("Product price must be a positive number")
+            self._logger.error("Product price must be a positive number")
             print("Product price must be a positive number")

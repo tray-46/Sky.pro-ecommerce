@@ -1,6 +1,6 @@
 """module with LawnGrass class definition"""
 
-from product import Product
+from src.product import Product
 
 
 class LawnGrass(Product):
@@ -39,7 +39,13 @@ class LawnGrass(Product):
         :param germination_period: str with germination period of lawn grass
         :param color: str with color of lawn grass
         """
+        self._logger.debug(
+            f"Constructor of Smartphone class called with: name='{name}', description='{description}', "
+            f"price={price}, quantity: {quantity}, country: {country}, "
+            f"germination_period : {germination_period}, color: {color}"
+        )
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period
         self.color = color
+        self._logger.info(f"Instance of LawnGrass named '{self.name}' created")
