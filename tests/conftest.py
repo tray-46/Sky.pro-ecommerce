@@ -27,14 +27,16 @@ def product() -> Product:
 
 @pytest.fixture
 def smartphone() -> Smartphone:
-    return Smartphone("test_smartphone", "test_smartphone description", 123456, 12,
-                      99.9, "the smartphone", 1024, "smartphone color")
+    return Smartphone(
+        "test_smartphone", "test_smartphone description", 123456, 12, 99.9, "the smartphone", 1024, "smartphone color"
+    )
 
 
 @pytest.fixture
 def lawn_grass() -> LawnGrass:
-    return LawnGrass("test_lawn_grass", "test_lawn_grass description", 123, 123,
-                     "test grass country", "1 day", "test grass color")
+    return LawnGrass(
+        "test_lawn_grass", "test_lawn_grass description", 123, 123, "test grass country", "1 day", "test grass color"
+    )
 
 
 @pytest.fixture

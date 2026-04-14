@@ -102,9 +102,7 @@ class Product:
 
     @price.setter
     def price(self, new_price: float) -> None:
-        self._logger.debug(
-            f"Trying to set '{self.name}' price - old value: {self.__price}, new value: {new_price}"
-        )
+        self._logger.debug(f"Trying to set '{self.name}' price - old value: {self.__price}, new value: {new_price}")
         if new_price > 0:
             if new_price < self.__price:
                 user_input = None

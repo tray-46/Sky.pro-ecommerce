@@ -59,15 +59,18 @@ def test_product_add(product: Product) -> None:
     assert product + product == 78966
 
 
-@pytest.mark.parametrize("product1, product2", [
-    ("product", "smartphone"),
-    ("product", "lawn_grass"),
-    ("smartphone", "product"),
-    ("smartphone", "lawn_grass"),
-    ("lawn_grass", "product"),
-    ("lawn_grass", "smartphone"),
-])
-def test_task_add_error(product1: str, product2: str , request: pytest.FixtureRequest, product: Product) -> None:
+@pytest.mark.parametrize(
+    "product1, product2",
+    [
+        ("product", "smartphone"),
+        ("product", "lawn_grass"),
+        ("smartphone", "product"),
+        ("smartphone", "lawn_grass"),
+        ("lawn_grass", "product"),
+        ("lawn_grass", "smartphone"),
+    ],
+)
+def test_task_add_error(product1: str, product2: str, request: pytest.FixtureRequest, product: Product) -> None:
     product1 = request.getfixturevalue(product1)
     product2 = request.getfixturevalue(product2)
     with pytest.raises(TypeError):

@@ -26,8 +26,16 @@ class LawnGrass(Product):
         color of lawn grass
     """
 
-    def __init__(self, name: str, description: str, price: float, quantity: int,
-                 country: str, germination_period: str, color: str) -> None:
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ) -> None:
         """
         LawnGrass class constructor
         :param name: str with name of a product

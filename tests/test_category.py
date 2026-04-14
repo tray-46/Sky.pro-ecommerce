@@ -1,4 +1,5 @@
 """test_category.py with tests for Category class"""
+
 import pytest
 
 from src.category import Category
@@ -31,8 +32,9 @@ def test_category_products_getter(category: Category) -> None:
     assert category.products == "test_product, 321 руб. Остаток: 123 шт."
 
 
-def test_category_add_product(category: Category, product: Product,
-                              smartphone: Smartphone, lawn_grass: LawnGrass) -> None:
+def test_category_add_product(
+    category: Category, product: Product, smartphone: Smartphone, lawn_grass: LawnGrass
+) -> None:
     assert len(category.products_list) == 1
     category.add_product(product)
     assert len(category.products_list) == 2
