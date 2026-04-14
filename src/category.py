@@ -55,6 +55,8 @@ class Category:
         adds new product to category
         :param new_product: Product class object
         """
+        if not isinstance(new_product, Product):
+            raise TypeError(f"Only Product and its subclasses can be added to category")
         self.__logger.debug(f"{self.__class__.__name__}.add_product called with {new_product.name}")
         self.__products.append(new_product)
         Category.product_count += 1
