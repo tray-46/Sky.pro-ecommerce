@@ -2,10 +2,9 @@
 import pytest
 
 from src.category import Category
-from src.product import Product
-
-from src.smartphone import Smartphone
 from src.lawn_grass import LawnGrass
+from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_category_counters_zero() -> None:
@@ -42,7 +41,7 @@ def test_category_add_product(category: Category, product: Product,
     category.add_product(product)
     assert len(category.products_list) == 4
     with pytest.raises(TypeError):
-        category.add_product(1)
+        category.add_product(1)  # type: ignore
     assert len(category.products_list) == 4
 
 

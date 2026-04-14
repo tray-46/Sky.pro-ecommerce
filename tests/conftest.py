@@ -1,9 +1,9 @@
 import pytest
 
 from src.category import Category
+from src.lawn_grass import LawnGrass
 from src.product import Product
 from src.smartphone import Smartphone
-from src.lawn_grass import LawnGrass
 from src.utils.product_iterator import ProductIterator
 
 
@@ -34,7 +34,7 @@ def smartphone() -> Smartphone:
 @pytest.fixture
 def lawn_grass() -> LawnGrass:
     return LawnGrass("test_lawn_grass", "test_lawn_grass description", 123, 123,
-                      "test grass country", "1 day", "test grass color")
+                     "test grass country", "1 day", "test grass color")
 
 
 @pytest.fixture

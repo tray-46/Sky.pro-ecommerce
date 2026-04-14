@@ -67,10 +67,10 @@ def test_product_add(product: Product) -> None:
     ("lawn_grass", "product"),
     ("lawn_grass", "smartphone"),
 ])
-def test_task_add_error(product1, product2, request, product: Product) -> None:
+def test_task_add_error(product1: str, product2: str , request: pytest.FixtureRequest, product: Product) -> None:
     product1 = request.getfixturevalue(product1)
     product2 = request.getfixturevalue(product2)
     with pytest.raises(TypeError):
         product1 + product2
     with pytest.raises(TypeError):
-        product + 1
+        product + 1  # type: ignore

@@ -50,7 +50,6 @@ class Category:
         """Return a human-readable string representation of the category"""
         return f"{self.name}, количество продуктов: {sum(product.quantity for product in self.__products)}"
 
-
     def add_product(self, new_product: Product) -> None:
         """
         adds new product to category
@@ -58,8 +57,10 @@ class Category:
         """
         self._logger.debug(f"{self.__class__.__name__}.add_product called with {new_product}")
         if not isinstance(new_product, Product):
-            self._logger.error(f"TypeError: Only Product and its subclasses can be added to category, new_product type: {type(new_product)}")
-            raise TypeError(f"Only Product and its subclasses can be added to category, new_product type: {type(new_product)}")
+            self._logger.error(f"TypeError: Only Product and its subclasses can be added to category, "
+                               f"new_product type: {type(new_product)}")
+            raise TypeError(f"Only Product and its subclasses can be added to category, "
+                            f"new_product type: {type(new_product)}")
         self.__products.append(new_product)
         Category.product_count += 1
         self._logger.info(f"{new_product.name} successfully added to {self.name} product list.")

@@ -21,4 +21,4 @@ def test_lawn_grass_add(lawn_grass: LawnGrass) -> None:
 
 def test_lawn_grass_add_error(lawn_grass: LawnGrass) -> None:
     with pytest.raises(TypeError):
-        lawn_grass + 1
+        lawn_grass + 1  # type: ignore

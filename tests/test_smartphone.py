@@ -4,6 +4,7 @@ import pytest
 
 from src.smartphone import Smartphone
 
+
 def test_smartphone_init(smartphone: Smartphone) -> None:
     assert smartphone.name == "test_smartphone"
     assert smartphone.description == "test_smartphone description"
@@ -21,4 +22,4 @@ def test_smartphone_add(smartphone: Smartphone) -> None:
 
 def test_smartphone_add_error(smartphone: Smartphone) -> None:
     with pytest.raises(TypeError):
-        smartphone + 1
+        smartphone + 1  # type: ignore
