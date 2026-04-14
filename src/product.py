@@ -51,6 +51,8 @@ class Product:
         :param other: Product, the other product to add
         :return: float, returns total price of both products (price1*quantity1 + price2*quantity2)
         """
+        if not type(other) is type(self):
+            raise TypeError(f"Can't add {type(self)} and {type(other)}")
         result = self.__price * self.quantity + other.__price * self.quantity
         Product.__logger.debug(f"'{self.name}' added '{other.name}' with result: {result}")
         return result
