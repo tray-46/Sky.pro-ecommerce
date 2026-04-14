@@ -25,8 +25,10 @@ To run the application, execute main.py module.
 ## Usage
 Project has definition of two classes:  
 Product - class for representation of a product;
-Category - class for representation a category of products.
-ProductIterator - support class for iterating through Category object product list
+Smartphone - class for representation of a smartphone (subclass of Product);
+LawnGrass - class for representation of a lawn grass (subclass of Product);
+Category - class for representation a category of products;
+ProductIterator - support class for iterating through Category object product list.
 
 The following functions are implemented in the project:
 1. function for creating and setting up logger:  
