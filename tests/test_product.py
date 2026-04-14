@@ -49,3 +49,11 @@ def test_product_price_setter(
     product.price = -1
     captured = capsys.readouterr()
     assert captured.out == "Product price must be a positive number\n"
+
+
+def test_product_str(product: Product) -> None:
+    assert str(product) == "test_product, 321 руб. Остаток: 123 шт."
+
+
+def test_product_add(product: Product) -> None:
+    assert product + product == 78966

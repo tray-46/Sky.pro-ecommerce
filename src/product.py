@@ -4,12 +4,11 @@ from typing import Optional
 
 from src.utils.logger import get_logger
 
-module_logger = get_logger(__name__)
-
 
 class Product:
     """
     class to represent a product
+    __logger: logging.Logger
 
     Attributes:
     name: str
@@ -22,6 +21,8 @@ class Product:
         quantity of a product
     """
 
+    __logger = get_logger(f"{__name__}.{__qualname__}")
+
     def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
         """
         Product class constructor
@@ -30,7 +31,7 @@ class Product:
         :param price: float with price of a product
         :param quantity: int with quantity of a product
         """
-        module_logger.debug(
+        Product.__logger.debug(
             f"Constructor of Product class called with: name='{name}', description='{description}', "
             f"price={price}, quantity: {quantity}"
         )
@@ -38,7 +39,21 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
-        module_logger.info(f"Instance of Product named '{self.name}' created")
+        Product.__logger.info(f"Instance of Product named '{self.name}' created")
+
+    def __str__(self) -> str:
+        """return a human-readable string representation of the product"""
+        return f"{self.name}, {self.price} руб. " f"Остаток: {self.quantity} шт."
+
+    def __add__(self, other: Product) -> float:
+        """
+        add two Products objects
+        :param other: Product, the other product to add
+        :return: float, returns total price of both products (price1*quantity1 + price2*quantity2)
+        """
+        result = self.__price * self.quantity + other.__price * self.quantity
+        Product.__logger.debug(f"'{self.name}' added '{other.name}' with result: {result}")
+        return result
 
     @classmethod
     def new_product(cls, new_product_params: dict, products_list: Optional[list[Product]] = None) -> Product:
@@ -49,7 +64,10 @@ class Product:
                               if list contain product with new product name update existing product values
         :return: Product instance with given parameters
         """
-
+        cls.__logger.debug(
+            f"{cls.__name__} new_product called with new_product_params: {new_product_params} "
+            f"and products_list: {products_list}"
+        )
         # add new product to list? change product in list if updating?
 
         if products_list is None:
@@ -60,9 +78,12 @@ class Product:
             new_product_name_price = new_product_params.get("price", 0)
             product.price = new_product_name_price if new_product_name_price > product.price else product.price
             product.quantity += new_product_params.get("quantity", 0)
+            cls.__logger.info(f"new_product call update '{product.name}'")
             return product
         else:
-            return Product(**new_product_params)
+            product = Product(**new_product_params)
+            cls.__logger.info(f"new_product call create '{product.name}'")
+            return product
 
     @property
     def price(self) -> float:
@@ -72,18 +93,26 @@ class Product:
         if new price lower than previous ask confirmation
         :rtype: float
         """
+        Product.__logger.debug(f"Assessing '{self.name}' price")
         return self.__price
 
     @price.setter
     def price(self, new_price: float) -> None:
+        Product.__logger.debug(
+            f"Trying to set '{self.name}' price - old value: {self.__price}, new value: {new_price}"
+        )
         if new_price > 0:
             if new_price < self.__price:
                 user_input = None
                 while user_input not in ["y", "n"]:
                     user_input = input(f"Do you really want to lower the price for '{self.name}'? y/n\n")
                 if user_input == "y":
+                    Product.__logger.info(f"'{self.name}' price decreasing confirmed by user")
                     self.__price = new_price
+                    Product.__logger.info(f"'{self.name}' price changed to {self.__price}")
             else:
                 self.__price = new_price
+                Product.__logger.info(f"'{self.name}' price changed to {self.__price}")
         else:
+            Product.__logger.error("Product price must be a positive number")
             print("Product price must be a positive number")

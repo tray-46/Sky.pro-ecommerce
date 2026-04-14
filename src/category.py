@@ -3,14 +3,13 @@
 from src.product import Product
 from src.utils.logger import get_logger
 
-module_logger = get_logger(__name__)
-
 
 class Category:
     """
     class to represent a category of products
 
     Attributes:
+    __logger: logging.Logger
     category_count: int
         class attribute: number of categories
     product_count: int
@@ -24,6 +23,8 @@ class Category:
         list of products associated with this category
     """
 
+    __logger = get_logger(f"{__name__}.{__qualname__}")
+
     category_count: int = 0
     product_count: int = 0
 
@@ -34,7 +35,7 @@ class Category:
         :param description: str with description of a category
         :param products: list of Products class objects associated with this category
         """
-        module_logger.debug(
+        self.__logger.debug(
             f"Constructor of Category class called with: name='{name}', description='{description}', "
             f"products={", ".join([f"'{product.name}'" for product in products])}"
         )
@@ -43,13 +44,18 @@ class Category:
         self.__products = products
         Category.category_count += 1
         Category.product_count += len(products)
-        module_logger.info(f"Instance of Category named '{self.name}' created")
+        self.__logger.info(f"Instance of Category named '{self.name}' created")
+
+    def __str__(self) -> str:
+        """Return a human-readable string representation of the category"""
+        return f"{self.name}, количество продуктов: {sum(product.quantity for product in self.__products)}"
 
     def add_product(self, new_product: Product) -> None:
         """
         adds new product to category
         :param new_product: Product class object
         """
+        self.__logger.debug(f"{self.__class__.__name__}.add_product called with {new_product.name}")
         self.__products.append(new_product)
         Category.product_count += 1
 
@@ -59,12 +65,8 @@ class Category:
         list of products associated with category in string format
         :return: list[str], list of formatted strings describing all products in category
         """
-        return "\n".join(
-            [
-                f"{product.name}, {product.price} руб. " f"Остаток: {product.quantity} шт."
-                for product in self.__products
-            ]
-        )
+        self.__logger.debug(f"Assessing '{self.name}' products")
+        return "\n".join(str(product) for product in self.__products)
 
     @property
     def products_list(self) -> list[Product]:
@@ -72,4 +74,5 @@ class Category:
         list of products associated with category
         :return:  list[Product], list of Product objects associated with category
         """
+        self.__logger.debug(f"Assessing '{self.name}' products_list")
         return self.__products
