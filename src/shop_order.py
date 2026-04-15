@@ -3,6 +3,7 @@
 from src.product import Product
 from src.utils.logger import get_logger
 
+
 class ShopOrder:
     """
     class to represent a shop order
@@ -45,7 +46,8 @@ class ShopOrder:
 
     def __str__(self) -> str:
         """Return a human-readable string representation of the order"""
-        return f"Заказ №{self.order_number}: {self.__products.name} в количестве {self.quantity} шт., общая стоимость: {self.total_cost} ₽"
+        return (f"Заказ №{self.order_number}: {self.__products.name} в количестве {self.quantity} шт., "
+                f"общая стоимость: {self.total_cost} ₽")
 
     @property
     def products(self) -> str:

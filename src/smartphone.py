@@ -1,7 +1,6 @@
 """module with Smartphone class definition"""
 
 from src.product import Product
-
 from src.utils.logger import get_logger
 
 

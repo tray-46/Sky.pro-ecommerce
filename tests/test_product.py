@@ -78,6 +78,7 @@ def test_task_add_error(product1: str, product2: str, request: pytest.FixtureReq
     with pytest.raises(TypeError):
         product + 1  # type: ignore
 
+
 def test_product_repr(product: Product) -> None:
     assert repr(product) == ("Product(name='test_product', description='test_product description', price=321, "
                              "quantity=123)")

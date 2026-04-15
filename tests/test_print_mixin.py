@@ -4,9 +4,10 @@ from unittest.mock import Mock, patch
 
 import pytest
 
+from src.lawn_grass import LawnGrass
 from src.product import Product
 from src.smartphone import Smartphone
-from src.lawn_grass import LawnGrass
+
 
 @patch("src.utils.print_mixin.repr")
 def test_print_mixin(mocked_repr: Mock, capsys: pytest.CaptureFixture) -> None:

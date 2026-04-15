@@ -3,8 +3,8 @@
 from typing import Optional
 
 from src.base_product import BaseProduct
-from src.utils.print_mixin import PrintMixin
 from src.utils.logger import get_logger
+from src.utils.print_mixin import PrintMixin
 
 
 class Product(BaseProduct, PrintMixin):

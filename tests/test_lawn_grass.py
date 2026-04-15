@@ -23,8 +23,8 @@ def test_lawn_grass_add_error(lawn_grass: LawnGrass) -> None:
     with pytest.raises(TypeError):
         lawn_grass + 1  # type: ignore
 
+
 def test_lawn_grass_repr(lawn_grass: LawnGrass) -> None:
     assert repr(lawn_grass) == ("LawnGrass(name='test_lawn_grass', description='test_lawn_grass description', "
                                 "price=123, quantity=123, country='test grass country', "
                                 "germination_period='1 day', color='test grass color')")
-
