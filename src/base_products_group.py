@@ -3,7 +3,7 @@
 from abc import ABC, abstractmethod
 
 
-class ProductsGroup(ABC):
+class BaseProductsGroup(ABC):
     """abstract class to represent a base products group"""
 
     @property

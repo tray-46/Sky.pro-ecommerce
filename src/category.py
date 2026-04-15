@@ -1,10 +1,11 @@
 """module with Category class definition"""
 
+from src.base_products_group import BaseProductsGroup
 from src.product import Product
 from src.utils.logger import get_logger
 
 
-class Category:
+class Category(BaseProductsGroup):
     """
     class to represent a category of products
 

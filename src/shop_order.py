@@ -1,10 +1,11 @@
 """module with Order class definition"""
 
+from src.base_products_group import BaseProductsGroup
 from src.product import Product
 from src.utils.logger import get_logger
 
 
-class ShopOrder:
+class ShopOrder(BaseProductsGroup):
     """
     class to represent a shop order
 
