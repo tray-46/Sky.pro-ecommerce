@@ -46,8 +46,10 @@ class Product(BaseProduct, PrintMixin):
 
     def __repr__(self) -> str:
         """return an unambiguous representation of the Product object"""
-        return (f"{self.__class__.__name__}(name={self.name!r}, description={self.description!r}, "
-                f"price={self.price!r}, quantity={self.quantity!r})")
+        return (
+            f"{self.__class__.__name__}(name={self.name!r}, description={self.description!r}, "
+            f"price={self.price!r}, quantity={self.quantity!r})"
+        )
 
     def __str__(self) -> str:
         """return a human-readable string representation of the product"""

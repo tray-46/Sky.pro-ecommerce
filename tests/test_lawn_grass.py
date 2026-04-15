@@ -25,6 +25,7 @@ def test_lawn_grass_add_error(lawn_grass: LawnGrass) -> None:
 
 
 def test_lawn_grass_repr(lawn_grass: LawnGrass) -> None:
-    assert repr(lawn_grass) == ("LawnGrass(name='test_lawn_grass', description='test_lawn_grass description', "
-                                "price=123, quantity=123, country='test grass country', "
-                                "germination_period='1 day', color='test grass color')")
+    assert repr(lawn_grass) == (
+        "LawnGrass(name='test_lawn_grass', description='test_lawn_grass description', price=123, quantity=123, "
+        "country='test grass country', germination_period='1 day', color='test grass color')"
+    )

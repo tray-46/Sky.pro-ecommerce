@@ -68,6 +68,8 @@ class Smartphone(Product):
 
     def __repr__(self) -> str:
         """return an unambiguous representation of the Smartphone object"""
-        return (f"{self.__class__.__name__}(name='test_smartphone', description={self.description!r}, "
-                f"price={self.price!r}, quantity={self.quantity!r}, "
-                f"efficiency={self.efficiency!r}, model={self.model!r}, memory={self.memory!r}, color={self.color!r})")
+        return (
+            f"{self.__class__.__name__}(name='test_smartphone', description={self.description!r}, "
+            f"price={self.price!r}, quantity={self.quantity!r}, "
+            f"efficiency={self.efficiency!r}, model={self.model!r}, memory={self.memory!r}, color={self.color!r})"
+        )

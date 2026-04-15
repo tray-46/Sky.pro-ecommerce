@@ -26,6 +26,7 @@ def test_smartphone_add_error(smartphone: Smartphone) -> None:
 
 
 def test_smartphone_repr(smartphone: Smartphone) -> None:
-    assert repr(smartphone) == ("Smartphone(name='test_smartphone', description='test_smartphone description', "
-                                "price=123456, quantity=12, efficiency=99.9, model='the smartphone', memory=1024, "
-                                "color='smartphone color')")
+    assert repr(smartphone) == (
+        "Smartphone(name='test_smartphone', description='test_smartphone description', price=123456, quantity=12, "
+        "efficiency=99.9, model='the smartphone', memory=1024, color='smartphone color')"
+    )

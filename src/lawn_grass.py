@@ -63,6 +63,8 @@ class LawnGrass(Product):
 
     def __repr__(self) -> str:
         """return an unambiguous representation of the LawnGrass object"""
-        return (f"{self.__class__.__name__}(name={self.name!r}, description={self.description!r}, "
-                f"price={self.price!r}, quantity={self.quantity!r}, "
-                f"country={self.country!r}, germination_period={self.germination_period!r}, color={self.color!r})")
+        return (
+            f"{self.__class__.__name__}(name={self.name!r}, description={self.description!r}, "
+            f"price={self.price!r}, quantity={self.quantity!r}, "
+            f"country={self.country!r}, germination_period={self.germination_period!r}, color={self.color!r})"
+        )
