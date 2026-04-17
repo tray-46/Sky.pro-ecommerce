@@ -1,6 +1,7 @@
 """module with Smartphone class definition"""
 
 from src.product import Product
+from src.utils.logger import get_logger
 
 
 class Smartphone(Product):
@@ -28,6 +29,8 @@ class Smartphone(Product):
         color of smartphone
     """
 
+    __logger = get_logger(f"{__name__}.{__qualname__}")
+
     def __init__(
         self,
         name: str,
@@ -51,14 +54,22 @@ class Smartphone(Product):
         :param memory: int with memory capacity of a smartphone in GB
         :param color: str with name of smartphone color
         """
-        self._logger.debug(
+        self.__logger.debug(
             f"Constructor of Smartphone class called with: name='{name}', description='{description}', "
             f"price={price}, quantity: {quantity}, efficiency: {efficiency}, model: {model}, "
             f"memory: {memory}, color: {color}"
         )
-        super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
         self.model = model
         self.memory = memory
         self.color = color
-        self._logger.info(f"Instance of Smartphone named '{self.name}' created")
+        super().__init__(name, description, price, quantity)
+        self.__logger.info(f"Instance of Smartphone named '{self.name}' created")
+
+    def __repr__(self) -> str:
+        """return an unambiguous representation of the Smartphone object"""
+        return (
+            f"{self.__class__.__name__}(name='test_smartphone', description={self.description!r}, "
+            f"price={self.price!r}, quantity={self.quantity!r}, "
+            f"efficiency={self.efficiency!r}, model={self.model!r}, memory={self.memory!r}, color={self.color!r})"
+        )

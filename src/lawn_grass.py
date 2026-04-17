@@ -1,6 +1,7 @@
 """module with LawnGrass class definition"""
 
 from src.product import Product
+from src.utils.logger import get_logger
 
 
 class LawnGrass(Product):
@@ -26,6 +27,8 @@ class LawnGrass(Product):
         color of lawn grass
     """
 
+    __logger = get_logger(f"{__name__}.{__qualname__}")
+
     def __init__(
         self,
         name: str,
@@ -47,13 +50,21 @@ class LawnGrass(Product):
         :param germination_period: str with germination period of lawn grass
         :param color: str with color of lawn grass
         """
-        self._logger.debug(
+        self.__logger.debug(
             f"Constructor of Smartphone class called with: name='{name}', description='{description}', "
             f"price={price}, quantity: {quantity}, country: {country}, "
             f"germination_period : {germination_period}, color: {color}"
         )
-        super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period
         self.color = color
-        self._logger.info(f"Instance of LawnGrass named '{self.name}' created")
+        super().__init__(name, description, price, quantity)
+        self.__logger.info(f"Instance of LawnGrass named '{self.name}' created")
+
+    def __repr__(self) -> str:
+        """return an unambiguous representation of the LawnGrass object"""
+        return (
+            f"{self.__class__.__name__}(name={self.name!r}, description={self.description!r}, "
+            f"price={self.price!r}, quantity={self.quantity!r}, "
+            f"country={self.country!r}, germination_period={self.germination_period!r}, color={self.color!r})"
+        )

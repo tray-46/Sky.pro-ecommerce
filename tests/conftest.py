@@ -3,6 +3,7 @@ import pytest
 from src.category import Category
 from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.shop_order import ShopOrder
 from src.smartphone import Smartphone
 from src.utils.product_iterator import ProductIterator
 
@@ -55,3 +56,8 @@ def category(product: Product) -> Category:
 @pytest.fixture
 def product_iterator(category: Category) -> ProductIterator:
     return ProductIterator(category)
+
+
+@pytest.fixture
+def shop_order(product: Product) -> ShopOrder:
+    return ShopOrder(product, 1)
