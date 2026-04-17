@@ -88,6 +88,26 @@ class Category(BaseProductsGroup):
         self.__logger.debug(f"Assessing '{self.name}' products_list")
         return self.__products
 
+    @products_list.setter
+    def products_list(self, new_product: Product) -> None:
+        if not isinstance(new_product, Product):
+            self.__logger.error(f"Only 'Product' objects can be added to category: new_product is {type(new_product)}")
+            raise TypeError(f"Only 'Product' objects can be added to category: new_product is {type(new_product)}")
+        self.__logger.debug(f"Adding '{new_product.name}' to {self.name} products list")
+        try:
+            if new_product.quantity == 0:
+                self.__logger.error("new_product's quantity cannot be zero")
+                raise ZeroQuantityProductError("new_product's quantity cannot be zero")
+        except ZeroQuantityProductError as e:
+            print(e)
+        else:
+            self.__products.append(new_product)
+            print(f"'{new_product.name}' added to {self.name}")
+            self.__logger.info(f"{new_product.name} added to {self.name}")
+        finally:
+            print(f"Product addition processing is complete")
+            self.__logger.debug(f"Product addition processing is complete")
+
     def middle_price(self) -> float:
         """
         calculate middle price of products in category

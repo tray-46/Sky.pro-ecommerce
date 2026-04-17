@@ -3,6 +3,7 @@
 from src.base_products_group import BaseProductsGroup
 from src.product import Product
 from src.utils.logger import get_logger
+from src.utils.exceptions import ZeroQuantityProductError
 
 
 class ShopOrder(BaseProductsGroup):
@@ -64,8 +65,28 @@ class ShopOrder(BaseProductsGroup):
     @property
     def products_(self) -> Product:
         """
-        list of products associated with category
-        :return:  list[Product], list of Product objects associated with category
+        get or set products in order
+        :return:  Product, Product objects associated with order
         """
         self.__logger.debug(f"Assessing order №'{self.order_number}' products")
         return self.__products
+
+    @products_.setter
+    def products_(self, new_product: Product) -> None:
+        if not isinstance(new_product, Product):
+            self.__logger.error(f"Only 'Product' objects can be added to order: new_product is {type(new_product)}")
+            raise TypeError(f"Only 'Product' objects can be added to order: new_product is {type(new_product)}")
+        self.__logger.debug(f"Setting order №{self.order_number} products to {new_product.name}")
+        try:
+            if new_product.quantity == 0:
+                self.__logger.error("new_product's quantity cannot be zero")
+                raise ZeroQuantityProductError("new_product's quantity cannot be zero")
+        except ZeroQuantityProductError as e:
+            print(e)
+        else:
+            self.__products = new_product
+            print(f"'{new_product.name}' added to order №{self.order_number}")
+            self.__logger.info(f"{new_product.name} added to order №{self.order_number}")
+        finally:
+            print(f"Product addition processing is complete")
+            self.__logger.debug(f"Product addition processing is complete")
