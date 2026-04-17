@@ -3,6 +3,7 @@
 from src.base_products_group import BaseProductsGroup
 from src.product import Product
 from src.utils.logger import get_logger
+from src.utils.exceptions import ZeroQuantityProductError
 
 
 class Category(BaseProductsGroup):
@@ -86,3 +87,13 @@ class Category(BaseProductsGroup):
         """
         self.__logger.debug(f"Assessing '{self.name}' products_list")
         return self.__products
+
+    def middle_price(self) -> float:
+        """
+        calculate middle price of products in category
+        :return: float with middle price of products in category, if no products in category returns zero
+        """
+        try:
+            return round(sum(product.price for product in self.__products) / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0.0
