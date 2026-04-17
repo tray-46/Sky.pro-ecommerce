@@ -105,8 +105,8 @@ class Category(BaseProductsGroup):
             print(f"'{new_product.name}' added to {self.name}")
             self.__logger.info(f"{new_product.name} added to {self.name}")
         finally:
-            print(f"Product addition processing is complete")
-            self.__logger.debug(f"Product addition processing is complete")
+            print("Product addition processing is complete")
+            self.__logger.debug("Product addition processing is complete")
 
     def middle_price(self) -> float:
         """
