@@ -35,6 +35,7 @@ ShopOrder - class for representation of a shop order (subclass of BaseProductsGr
 ProductIterator - support class for iterating through Category object product list.  
 
 PrintMixin - mixin class for printing object's class and parameters during creation  
+ZeroQuantityProductError - custom exception for processing product additions
 
 The following functions are implemented in the project:
 1. function for creating and setting up logger:  

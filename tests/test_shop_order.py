@@ -1,5 +1,7 @@
 """test_shop_order.py with tests for ShopOrder class"""
 
+import pytest
+
 from src.product import Product
 from src.shop_order import ShopOrder
 
@@ -20,9 +22,21 @@ def test_shop_order_products_getter(shop_order: ShopOrder, product: Product) -> 
     assert shop_order.products_ == product
 
 
+def test_shop_order_products_setter(shop_order: ShopOrder, product: Product, capsys: pytest.CaptureFixture) -> None:
+    with pytest.raises(TypeError):
+        shop_order.products_ = 1  # type: ignore
+    shop_order.products_ = product
+    captured = capsys.readouterr()
+    assert captured.out == "'test_product' added to order №3\nProduct addition processing is complete\n"
+    product.quantity = 0
+    shop_order.products_ = product
+    captured = capsys.readouterr()
+    assert captured.out == "new_product's quantity cannot be zero\nProduct addition processing is complete\n"
+
+
 def test_shop_order_products_str_getter(shop_order: ShopOrder) -> None:
     assert shop_order.products == "test_product, 321 руб. Остаток: 123 шт."
 
 
 def test_shop_order_str(shop_order: ShopOrder) -> None:
-    assert str(shop_order) == "Заказ №4: test_product в количестве 1 шт., общая стоимость: 321 ₽"
+    assert str(shop_order) == "Заказ №5: test_product в количестве 1 шт., общая стоимость: 321 ₽"

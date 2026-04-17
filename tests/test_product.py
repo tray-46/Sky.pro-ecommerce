@@ -83,3 +83,13 @@ def test_product_repr(product: Product) -> None:
     assert repr(product) == (
         "Product(name='test_product', description='test_product description', price=321, " "quantity=123)"
     )
+
+
+def test_product_varify_quantity() -> None:
+    with pytest.raises(TypeError, match="'quantity' must be an integer"):
+        Product.varify_quantity("1")  # type: ignore
+    with pytest.raises(ValueError, match="'quantity' must be non negative integer"):
+        Product.varify_quantity(-1)
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product.varify_quantity(0)
+    assert Product.varify_quantity(1)

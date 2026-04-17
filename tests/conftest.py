@@ -54,6 +54,11 @@ def category(product: Product) -> Category:
 
 
 @pytest.fixture
+def category_no_products() -> Category:
+    return Category("test_category", "test_category description", [])
+
+
+@pytest.fixture
 def product_iterator(category: Category) -> ProductIterator:
     return ProductIterator(category)
 
