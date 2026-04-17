@@ -66,9 +66,20 @@ class Category(BaseProductsGroup):
             raise TypeError(
                 f"Only Product and its subclasses can be added to category, new_product type: {type(new_product)}"
             )
-        self.__products.append(new_product)
-        Category.product_count += 1
-        self.__logger.info(f"{new_product.name} successfully added to {self.name} product list.")
+        try:
+            if new_product.quantity == 0:
+                self.__logger.error("new_product's quantity cannot be zero")
+                raise ZeroQuantityProductError("new_product's quantity cannot be zero")
+        except ZeroQuantityProductError as e:
+            print(e)
+        else:
+            self.__products.append(new_product)
+            Category.product_count += 1
+            print(f"'{new_product.name}' added to {self.name}")
+            self.__logger.info(f"{new_product.name} successfully added to {self.name} product list.")
+        finally:
+            print("Product addition processing is complete")
+            self.__logger.debug("Product addition processing is complete")
 
     @property
     def products(self) -> str:
@@ -102,6 +113,7 @@ class Category(BaseProductsGroup):
             print(e)
         else:
             self.__products.append(new_product)
+            Category.product_count += 1
             print(f"'{new_product.name}' added to {self.name}")
             self.__logger.info(f"{new_product.name} added to {self.name}")
         finally:

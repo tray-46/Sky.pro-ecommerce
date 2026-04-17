@@ -28,7 +28,7 @@ def test_category_products_list_getter(category: Category, product: Product) -> 
     assert category.products_list == [product]
 
 
-def test_category_products_list_setter(category: Category, product: Product, capsys) -> None:
+def test_category_products_list_setter(category: Category, product: Product, capsys: pytest.CaptureFixture) -> None:
     with pytest.raises(TypeError):
         category.products_list = 1
     assert len(category.products_list) == 1
@@ -49,17 +49,23 @@ def test_category_products_getter(category: Category) -> None:
 
 
 def test_category_add_product(
-    category: Category, product: Product, smartphone: Smartphone, lawn_grass: LawnGrass
+    category: Category, product: Product, smartphone: Smartphone, lawn_grass: LawnGrass, capsys: pytest.CaptureFixture
 ) -> None:
     assert len(category.products_list) == 1
     category.add_product(product)
     assert len(category.products_list) == 2
-    category.add_product(product)
+    category.add_product(smartphone)
     assert len(category.products_list) == 3
-    category.add_product(product)
+    category.add_product(lawn_grass)
     assert len(category.products_list) == 4
     with pytest.raises(TypeError):
         category.add_product(1)  # type: ignore
+    assert len(category.products_list) == 4
+    capsys.readouterr()
+    product.quantity = 0
+    category.add_product(product)
+    captured = capsys.readouterr()
+    assert captured.out == "new_product's quantity cannot be zero\nProduct addition processing is complete\n"
     assert len(category.products_list) == 4
 
 
