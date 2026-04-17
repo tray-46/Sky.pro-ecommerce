@@ -31,7 +31,7 @@ class Product(BaseProduct, PrintMixin):
         :param name: str with name of a product
         :param description: str with description of a product
         :param price: float with price of a product
-        :param quantity: int with quantity of a product
+        :param quantity: int with quantity of a product, must be positive number
         """
         self.__logger.debug(
             f"Constructor of Product class called with: name='{name}', description='{description}', "
@@ -40,7 +40,8 @@ class Product(BaseProduct, PrintMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if self.varify_quantity(quantity):
+            self.quantity = quantity
         super().__init__()
         self.__logger.info(f"Instance of Product named '{self.name}' created")
 
@@ -128,3 +129,18 @@ class Product(BaseProduct, PrintMixin):
         else:
             self.__logger.error("Product price must be a positive number")
             print("Product price must be a positive number")
+
+    @staticmethod
+    def varify_quantity(quantity: int) -> bool:
+        """
+        varification of given quantity for product
+        :param quantity: int with a quantity
+        :return: bool, return True if given quantity is positive number or raises exception
+        """
+        if not isinstance(quantity, int):
+            raise TypeError("'quantity' must be an integer")
+        if quantity < 0:
+            raise ValueError("'quantity' must be non negative integer")
+        elif quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        return True
