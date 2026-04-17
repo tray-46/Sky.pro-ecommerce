@@ -30,7 +30,7 @@ def test_category_products_list_getter(category: Category, product: Product) -> 
 
 def test_category_products_list_setter(category: Category, product: Product, capsys: pytest.CaptureFixture) -> None:
     with pytest.raises(TypeError):
-        category.products_list = 1
+        category.products_list = 1  # type: ignore
     assert len(category.products_list) == 1
     category.products_list = product
     captured = capsys.readouterr()

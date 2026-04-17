@@ -2,8 +2,8 @@
 
 from src.base_products_group import BaseProductsGroup
 from src.product import Product
-from src.utils.logger import get_logger
 from src.utils.exceptions import ZeroQuantityProductError
+from src.utils.logger import get_logger
 
 
 class ShopOrder(BaseProductsGroup):
@@ -88,5 +88,5 @@ class ShopOrder(BaseProductsGroup):
             print(f"'{new_product.name}' added to order №{self.order_number}")
             self.__logger.info(f"{new_product.name} added to order №{self.order_number}")
         finally:
-            print(f"Product addition processing is complete")
-            self.__logger.debug(f"Product addition processing is complete")
+            print("Product addition processing is complete")
+            self.__logger.debug("Product addition processing is complete")

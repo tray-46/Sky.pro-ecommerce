@@ -22,9 +22,9 @@ def test_shop_order_products_getter(shop_order: ShopOrder, product: Product) -> 
     assert shop_order.products_ == product
 
 
-def test_shop_order_products_setter(shop_order: ShopOrder, product: Product, capsys) -> None:
+def test_shop_order_products_setter(shop_order: ShopOrder, product: Product, capsys: pytest.CaptureFixture) -> None:
     with pytest.raises(TypeError):
-        shop_order.products_ = 1
+        shop_order.products_ = 1  # type: ignore
     shop_order.products_ = product
     captured = capsys.readouterr()
     assert captured.out == "'test_product' added to order №3\nProduct addition processing is complete\n"

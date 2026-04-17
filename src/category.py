@@ -2,8 +2,8 @@
 
 from src.base_products_group import BaseProductsGroup
 from src.product import Product
-from src.utils.logger import get_logger
 from src.utils.exceptions import ZeroQuantityProductError
+from src.utils.logger import get_logger
 
 
 class Category(BaseProductsGroup):
